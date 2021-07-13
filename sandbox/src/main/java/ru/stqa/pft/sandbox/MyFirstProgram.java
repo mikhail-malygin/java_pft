@@ -14,7 +14,7 @@ public class MyFirstProgram {
 		System.out.println("Площадь прямоугольника со сторонами " + rectangle.a + " и " + rectangle.b + " = "
 							+ rectangle.area());
 
-		Point p1 = new Point(3, 5);
+		Point p1 = new Point(1.4, 5);
 		Point p2 = new Point(2, -1.56);
 
 		/* Расчет расстояния между двумя точками через функцию
@@ -22,7 +22,8 @@ public class MyFirstProgram {
 		*/
 
 		// Расчет расстояния между двумя точками через метод
-		System.out.println("Расстояние между двумя точками p1 и p2 = " + p1.distanceMethod(p1, p2));
+		System.out.println("Расстояние между двумя точками p1(" + p1.x + ", " + p1.y +
+				           ") и p2(" + p2.x + "," + p2.y + ") = " + p1.distanceMethod(p2));
 	}
 
 	public static void hello(String somebody) {
