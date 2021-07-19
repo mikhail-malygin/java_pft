@@ -34,7 +34,6 @@ public class ContactCreationTests {
                     "799999999999", "test.malygin@gmail.com"));
     submitContactForm();
     returnToHomePage();
-    logout();
   }
 
   private void logout() {
@@ -73,6 +72,7 @@ public class ContactCreationTests {
 
   @AfterMethod(alwaysRun = true)
   public void tearDown() throws Exception {
+    logout();
     wd.quit();
   }
 
