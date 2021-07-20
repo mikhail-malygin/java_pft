@@ -27,11 +27,11 @@ public class ContactHelper extends HelperBase {
     }
 
     public void initContactModification() {
-        click(By.xpath("//tr[3]/td[8]/a/img"));
+        click(By.cssSelector("#container #maintable .center a img[title=Edit]"));
     }
 
     public void submitContactModification() {
-        click(By.xpath("//input[22]"));
+        click(By.cssSelector("input[value=Update]"));
     }
 
     public void deleteContact() {
