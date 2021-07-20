@@ -33,4 +33,16 @@ public class ContactHelper extends HelperBase {
     public void submitContactModification() {
         click(By.xpath("//input[22]"));
     }
+
+    public void deleteContact() {
+        click(By.xpath("//div[2]/input"));
+    }
+
+    public void selectContact() {
+        click(By.cssSelector("#container #maintable input"));
+    }
+
+    public void submitContactDeletion() {
+        wd.switchTo().alert().accept();
+    }
 }
