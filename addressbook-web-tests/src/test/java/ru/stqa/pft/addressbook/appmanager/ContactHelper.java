@@ -49,4 +49,13 @@ public class ContactHelper extends HelperBase {
     public void submitContactDeletion() {
         wd.switchTo().alert().accept();
     }
+
+    public boolean isThereAContact() {
+        return isElementPresent(By.cssSelector("#container #maintable input"));
+    }
+
+    public void createContact(ContactData contact, boolean creation) {
+        fillContactForm(contact, creation);
+        submitContactForm();
+    }
 }
