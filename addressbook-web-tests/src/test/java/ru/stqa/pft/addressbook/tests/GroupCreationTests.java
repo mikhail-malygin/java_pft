@@ -4,14 +4,16 @@ import org.testng.Assert;
 import org.testng.annotations.*;
 import ru.stqa.pft.addressbook.model.GroupData;
 
+import java.util.List;
+
 public class GroupCreationTests extends TestBase {
 
   @Test
   public void testGroupCreation() throws Exception {
     app.getNavigationHelper().gotoGrouppage();
-    int beforeGroupCount = app.getGroupHelper().getGroupCount();
+    List<GroupData> beforeGroup = app.getGroupHelper().getGroupList();
     app.getGroupHelper().createGroup(new GroupData("test1", null, null));
-    int afterGroupCount = app.getGroupHelper().getGroupCount();
-    Assert.assertEquals(afterGroupCount, beforeGroupCount + 1);
+    List<GroupData> afterGroup = app.getGroupHelper().getGroupList();
+    Assert.assertEquals(afterGroup.size(), beforeGroup.size() + 1);
   }
 }
