@@ -42,8 +42,8 @@ public class ContactHelper extends HelperBase {
         click(By.cssSelector("input[value=Delete]"));
     }
 
-    public void selectContact() {
-        click(By.cssSelector("#container #maintable input"));
+    public void selectContact(int index) {
+        wd.findElements(By.cssSelector("#container #maintable input")).get(index).click();
     }
 
     public void submitContactDeletion() {
