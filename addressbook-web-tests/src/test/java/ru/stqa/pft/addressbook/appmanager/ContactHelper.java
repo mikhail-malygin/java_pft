@@ -58,4 +58,8 @@ public class ContactHelper extends HelperBase {
         fillContactForm(contact, creation);
         submitContactForm();
     }
+
+    public int getContactCount() {
+        return wd.findElements(By.cssSelector(".center input")).size();
+    }
 }
