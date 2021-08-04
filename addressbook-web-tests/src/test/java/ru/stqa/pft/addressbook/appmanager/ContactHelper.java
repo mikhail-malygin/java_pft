@@ -34,8 +34,8 @@ public class ContactHelper extends HelperBase {
       click(By.xpath("//div[@id='content']/form/input[21]"));
     }
 
-    public void initContactModification() {
-        click(By.cssSelector("#container #maintable .center a img[title=Edit]"));
+    public void initContactModification(int index) {
+        wd.findElements(By.cssSelector("#container #maintable .center a img[title=Edit]")).get(index).click();
     }
 
     public void submitContactModification() {
@@ -75,7 +75,8 @@ public class ContactHelper extends HelperBase {
             String[] parts = element.getText().split(" ");
             String lastName = parts[0];
             String firstName = parts[1];
-            ContactData contact = new ContactData(firstName,null, lastName, null, null, null);
+            String id = element.findElement(By.tagName("input")).getAttribute("value");
+            ContactData contact = new ContactData(id, firstName,null, lastName, null, null, null);
             contacts.add(contact);
         }
         return contacts;
