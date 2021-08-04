@@ -64,12 +64,8 @@ public class ContactHelper extends HelperBase {
         submitContactForm();
     }
 
-    public int getContactCount() {
-        return wd.findElements(By.cssSelector(".center input")).size();
-    }
-
     public List<ContactData> getContactList() {
-        List<ContactData> contacts = new ArrayList<ContactData>();
+        List<ContactData> contacts = new ArrayList<>();
         List<WebElement> elements = wd.findElements(By.name("entry"));
         for (WebElement element : elements) {
             String[] parts = element.getText().split(" ");
