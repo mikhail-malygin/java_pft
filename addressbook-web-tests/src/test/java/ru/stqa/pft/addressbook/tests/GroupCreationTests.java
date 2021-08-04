@@ -20,7 +20,7 @@ public class GroupCreationTests extends TestBase {
     Assert.assertEquals(afterGroup.size(), beforeGroup.size() + 1);
 
     beforeGroup.add(groupData);
-    Comparator<? super GroupData> byId = (g1, g2) -> Integer.compare(g1.getId(), g2.getId());
+    Comparator<? super GroupData> byId = Comparator.comparingInt(GroupData::getId);
     beforeGroup.sort(byId);
     afterGroup.sort(byId);
     Assert.assertEquals(beforeGroup, afterGroup);
