@@ -63,20 +63,26 @@ public class ContactHelper extends HelperBase {
         return isElementPresent(By.cssSelector("#container #maintable input"));
     }
 
-    public void createContact(ContactData contact, boolean creation) {
+    public void create(ContactData contact, boolean creation) {
         fillContactForm(contact, creation);
         submitContactForm();
+        returnToHomePage();
     }
 
-    public void modifiedContact(int index, ContactData contact) {
+    public void modify(int index, ContactData contact) {
         initContactModification(index);
         fillContactForm(contact, false);
         submitContactModification();
         returnToHomePage();
     }
 
+    public void delete(int index) {
+        selectContact(index);
+        deleteContact();
+        submitContactDeletion();
+    }
 
-    public List<ContactData> getContactList() {
+    public List<ContactData> list() {
         List<ContactData> contacts = new ArrayList<>();
         List<WebElement> elements = wd.findElements(By.name("entry"));
         for (WebElement element : elements) {
