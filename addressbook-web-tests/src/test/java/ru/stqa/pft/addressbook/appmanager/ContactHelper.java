@@ -55,6 +55,10 @@ public class ContactHelper extends HelperBase {
         wd.findElement(By.cssSelector("div.msgbox"));
     }
 
+    public void returnToHomePage() {
+        click(By.linkText("home page"));
+    }
+
     public boolean isThereAContact() {
         return isElementPresent(By.cssSelector("#container #maintable input"));
     }
@@ -63,6 +67,14 @@ public class ContactHelper extends HelperBase {
         fillContactForm(contact, creation);
         submitContactForm();
     }
+
+    public void modifiedContact(int index, ContactData contact) {
+        initContactModification(index);
+        fillContactForm(contact, false);
+        submitContactModification();
+        returnToHomePage();
+    }
+
 
     public List<ContactData> getContactList() {
         List<ContactData> contacts = new ArrayList<>();
