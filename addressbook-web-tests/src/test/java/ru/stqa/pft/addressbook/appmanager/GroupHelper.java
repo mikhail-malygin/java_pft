@@ -15,10 +15,6 @@ public class GroupHelper extends HelperBase {
     }
 
     public void returnToGroupPage() {
-        click(By.linkText("group page"));
-    }
-
-    public void returnToGroups() {
         click(By.cssSelector(".admin a"));
     }
 
@@ -58,14 +54,6 @@ public class GroupHelper extends HelperBase {
         submitGroupCreation();
         groupCache = null;
         returnToGroupPage();
-    }
-
-    public void createInvalid(GroupData group) {
-        initGroupCreation();
-        fillGroupForm(group);
-        submitGroupCreation();
-        groupCache = null;
-        returnToGroups();
     }
 
     public void modify(GroupData groupData) {
