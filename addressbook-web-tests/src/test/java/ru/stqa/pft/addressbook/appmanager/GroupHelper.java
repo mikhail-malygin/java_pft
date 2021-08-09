@@ -18,6 +18,10 @@ public class GroupHelper extends HelperBase {
         click(By.linkText("group page"));
     }
 
+    public void returnToGroups() {
+        click(By.cssSelector(".admin a"));
+    }
+
     public void submitGroupCreation() {
         click(By.name("submit"));
     }
@@ -56,6 +60,14 @@ public class GroupHelper extends HelperBase {
         returnToGroupPage();
     }
 
+    public void createInvalid(GroupData group) {
+        initGroupCreation();
+        fillGroupForm(group);
+        submitGroupCreation();
+        groupCache = null;
+        returnToGroups();
+    }
+
     public void modify(GroupData groupData) {
         selectGroupById(groupData.getId());
         initGroupModification();
@@ -76,7 +88,7 @@ public class GroupHelper extends HelperBase {
         return isElementPresent(By.name("selected[]"));
     }
 
-    public int getGroupCount() {
+    public int count() {
         return wd.findElements(By.name("selected[]")).size();
     }
 
