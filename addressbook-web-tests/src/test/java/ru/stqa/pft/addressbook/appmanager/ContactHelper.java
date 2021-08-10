@@ -20,7 +20,9 @@ public class ContactHelper extends HelperBase {
       type(By.name("firstname"),contactData.getFirstName());
       type(By.name("middlename"),contactData.getMiddleName());
       type(By.name("lastname"),contactData.getLastName());
-      type(By.name("home"),contactData.getNumber());
+      type(By.name("home"),contactData.getHomeNumber());
+      type(By.name("mobile"),contactData.getMobileNumber());
+      type(By.name("work"),contactData.getWorkNumber());
       type(By.name("email"),contactData.getEmail());
 
       if (creation) {
@@ -102,9 +104,25 @@ public class ContactHelper extends HelperBase {
             List<WebElement> cells = element.findElements(By.tagName("td"));
             String lastName = cells.get(1).getText();
             String firstName = cells.get(2).getText();
+            String allPhones = cells.get(5).getText();
             int id = Integer.parseInt(element.findElement(By.tagName("input")).getAttribute("value"));
-            contactCache.add(new ContactData().withId(id).withFirstName(firstName).withLastName(lastName));
+            contactCache.add(new ContactData().withId(id).withFirstName(firstName).withLastName(lastName).
+                    withAllPhones(allPhones));
         }
         return new Contacts(contactCache);
+    }
+
+    public ContactData infoFromEditForm(ContactData contact) {
+        initContactModificationById(contact.getId());
+        String firstName = wd.findElement(By.name("firstname")).getAttribute("value");
+        String lastName = wd.findElement(By.name("lastname")).getAttribute("value");
+        String middleName = wd.findElement(By.name("middlename")).getAttribute("value");
+        String homeNumber = wd.findElement(By.name("home")).getAttribute("value");
+        String mobileNumber = wd.findElement(By.name("mobile")).getAttribute("value");
+        String workNumber = wd.findElement(By.name("work")).getAttribute("value");
+        wd.navigate().back();
+        return new ContactData().withId(contact.getId()).withFirstName(firstName).withLastName(lastName).
+                withMiddleName(middleName).withHomeNumber(homeNumber).withMobileNumber(mobileNumber).
+                withWorkNumber(workNumber);
     }
 }
