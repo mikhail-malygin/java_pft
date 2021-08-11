@@ -16,8 +16,8 @@ public class ContactCreationTests extends TestBase {
     ContactData contact = new ContactData().withFirstName("Mikhail").withMiddleName("Sergeevich").
             withLastName("Malygin").withAddress("Russia, Testing region, Agile city, Jira str, appart: 47, 9").
             withHomeNumber("8(343)9").withMobileNumber("799999999999").withWorkNumber("123-34").
-            withEmail("test.malygin@gmail.com").withGroup("test1");
-    app.contact().create(contact, true);
+            withEmail("test.malygin@gmail.com").withEmail3("tes3t@mail.ru").withGroup("test1");
+    app.contact().create(contact, true, false);
     assertThat(app.contact().count(), equalTo(beforeContact.size() + 1));
     Contacts afterContact = app.contact().all();
     assertThat(afterContact, equalTo(beforeContact.withAdded(
@@ -31,8 +31,8 @@ public class ContactCreationTests extends TestBase {
     ContactData contact = new ContactData().withFirstName("Mikhail'").withMiddleName("Sergeevich").
             withLastName("Malygin").withAddress("Russia, Testing region, Agile city, Jira str, appart: 47, 9").
             withHomeNumber("8(343)9").withMobileNumber("799999999999").withWorkNumber("123-34").
-            withEmail("test.malygin@gmail.com").withGroup("test1");
-    app.contact().create(contact, true);
+            withEmail("test.malygin@gmail.com").withEmail3("tes3t@mail.ru").withGroup("test1");
+    app.contact().create(contact, true, false);
     assertThat(app.contact().count(), equalTo(beforeContact.size()));
     Contacts afterContact = app.contact().all();
     assertThat(afterContact, equalTo(beforeContact));
