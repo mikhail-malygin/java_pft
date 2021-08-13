@@ -17,13 +17,14 @@ public class ContactHelper extends HelperBase {
     }
 
     public void fillContactForm(ContactData contactData, boolean creation, boolean modification) {
-      type(By.name("firstname"),contactData.getFirstName());
-      type(By.name("middlename"),contactData.getMiddleName());
-      type(By.name("lastname"),contactData.getLastName());
-      type(By.xpath("/html/body/div/div[4]/form/textarea[1]"),contactData.getAddress());
-      type(By.name("home"),contactData.getHomeNumber());
-      type(By.name("mobile"),contactData.getMobileNumber());
-      type(By.name("work"),contactData.getWorkNumber());
+      type(By.name("firstname"), contactData.getFirstName());
+      type(By.name("middlename"), contactData.getMiddleName());
+      type(By.name("lastname"), contactData.getLastName());
+      type(By.xpath("/html/body/div/div[4]/form/textarea[1]"), contactData.getAddress());
+      type(By.name("home"), contactData.getHomeNumber());
+      type(By.name("mobile"), contactData.getMobileNumber());
+      type(By.name("work"), contactData.getWorkNumber());
+      attach(By.name("photo"), contactData.getPhoto());
       if (modification) {
           type(By.xpath("/html/body/div/div[4]/form[1]/input[15]"),contactData.getEmail());
           type(By.xpath("/html/body/div/div[4]/form[1]/input[16]"),contactData.getEmail2());
