@@ -1,5 +1,7 @@
 package ru.stqa.pft.addressbook.tests;
 
+import com.google.common.reflect.TypeToken;
+import com.google.gson.Gson;
 import com.thoughtworks.xstream.XStream;
 import org.testng.annotations.*;
 import ru.stqa.pft.addressbook.model.GroupData;
@@ -16,7 +18,7 @@ import static org.hamcrest.MatcherAssert.*;
 public class GroupCreationTests extends TestBase {
 
   @DataProvider
-  public Iterator<Object[]> validGroups() throws IOException {
+  public Iterator<Object[]> validGroupsFromXml() throws IOException {
     BufferedReader reader = new BufferedReader(new FileReader("src/test/resources/groups.xml"));
     StringBuilder xml = new StringBuilder();
     String line = reader.readLine();
@@ -30,7 +32,21 @@ public class GroupCreationTests extends TestBase {
     return groups.stream().map((g) -> new Object[] {g}).collect(Collectors.toList()).iterator();
   }
 
-  @Test (dataProvider = "validGroups")
+  @DataProvider
+  public Iterator<Object[]> validGroupsFromJson() throws IOException {
+    BufferedReader reader = new BufferedReader(new FileReader("src/test/resources/groups.json"));
+    StringBuilder json = new StringBuilder();
+    String line = reader.readLine();
+    while (line != null) {
+      json.append(line);
+      line = reader.readLine();
+    }
+    Gson gson = new Gson();
+    List<GroupData> groups = gson.fromJson(String.valueOf(json), new TypeToken<List<GroupData>>(){}.getType()); // List<GroupData>.class
+    return groups.stream().map((g) -> new Object[] {g}).collect(Collectors.toList()).iterator();
+  }
+
+  @Test (dataProvider = "validGroupsFromJson")
   public void testGroupCreation(GroupData groupData) throws Exception {
     app.goTo().groupPage();
     Groups beforeGroup = app.group().all();
