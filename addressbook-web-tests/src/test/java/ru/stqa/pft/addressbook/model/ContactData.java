@@ -23,7 +23,7 @@ public class ContactData {
     private String email2;
     @Expose
     private String email3;
-    @XStreamOmitField
+    @Expose
     private String group;
     @Expose
     private String homeNumber;
@@ -36,7 +36,6 @@ public class ContactData {
     @Expose
     private String address;
     private String allEmail;
-    @Expose
     private File photo;
 
     public ContactData withId(int id) {

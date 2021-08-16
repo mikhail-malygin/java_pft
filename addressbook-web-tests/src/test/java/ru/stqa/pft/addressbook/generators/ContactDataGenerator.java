@@ -72,10 +72,10 @@ public class ContactDataGenerator {
     private void saveAsCsv(List<ContactData> contacts, File file) throws IOException {
         Writer writer = new FileWriter(file);
         for (ContactData contact : contacts) {
-            writer.write(String.format("%s;%s;%s;%s;%s;%s;%s;%s;%s;%s\n", contact.getLastName(),
+            writer.write(String.format("%s;%s;%s;%s;%s;%s;%s;%s;%s;%s;%s\n", contact.getLastName(),
                     contact.getFirstName(), contact.getMiddleName(), contact.getAddress(), contact.getHomeNumber(),
                     contact.getMobileNumber(), contact.getWorkNumber(), contact.getEmail(), contact.getEmail2(),
-                    contact.getEmail3()));
+                    contact.getEmail3(), contact.getGroup()));
         }
         writer.close();
     }
@@ -87,7 +87,7 @@ public class ContactDataGenerator {
                     withMiddleName("Sergeevich").withHomeNumber("83439").withMobileNumber("799999999999").
                     withAddress("Russia, Testing region, Agile city, Jira str, appart: 47, 9").withWorkNumber("712").
                     withEmail("test.malygin@gmail.com").withEmail2("test.malygin2@gmail.com").
-                    withEmail3("test.malygin3@gmail.com"));
+                    withEmail3("test.malygin3@gmail.com").withGroup("test1"));
         }
         return contacts;
     }
