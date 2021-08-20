@@ -4,13 +4,12 @@ import org.testng.annotations.Test;
 import ru.stqa.pft.addressbook.model.GroupData;
 import ru.stqa.pft.addressbook.model.Groups;
 
-import java.security.acl.Group;
 import java.sql.*;
 
 public class DbConnectionsTests {
 
     @Test
-    public void DbConnections() {
+    public void testDbConnections() {
         Connection conn = null;
 
         try {
