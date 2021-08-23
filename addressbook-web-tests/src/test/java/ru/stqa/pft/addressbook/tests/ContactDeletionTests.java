@@ -20,6 +20,7 @@ public class ContactDeletionTests extends TestBase {
                     withEmail("test.malygin@gmail.com").withEmail3("tes3t@mail.ru").withGroup("test1"),
                     true, false);
             app.goTo().returnToHomePage();
+            verifyContactListInUI();
         }
     }
 

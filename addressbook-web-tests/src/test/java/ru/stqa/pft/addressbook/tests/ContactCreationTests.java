@@ -47,7 +47,7 @@ public class ContactCreationTests extends TestBase {
       }
       Gson gson = new Gson();
       // List<ContactData>.class
-      List<ContactData> contacts = gson.fromJson(String.valueOf(json), new TypeToken<List<ContactData>>(){}.getType()); // List<ContactData>.class
+      List<ContactData> contacts = gson.fromJson(String.valueOf(json), new TypeToken<List<ContactData>>(){}.getType());
       return contacts.stream().map((c) -> new Object[] {c}).collect(Collectors.toList()).iterator();
     }
   }
@@ -62,6 +62,7 @@ public class ContactCreationTests extends TestBase {
     Contacts afterContact = app.db().contacts();
     assertThat(afterContact, equalTo(beforeContact.withAdded(
             contactData.withId(afterContact.stream().mapToInt(ContactData::getId).max().getAsInt()))));
+    verifyContactListInUI();
   }
 
   @Test(enabled = false)
