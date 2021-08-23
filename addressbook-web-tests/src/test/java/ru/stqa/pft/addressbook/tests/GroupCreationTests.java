@@ -52,10 +52,10 @@ public class GroupCreationTests extends TestBase {
   @Test (dataProvider = "validGroupsFromJson")
   public void testGroupCreation(GroupData groupData) throws Exception {
     app.goTo().groupPage();
-    Groups beforeGroup = app.group().all();
+    Groups beforeGroup = app.db().groups();
     app.group().create(groupData);
     assertThat(app.group().count(), equalTo(beforeGroup.size() + 1));
-    Groups afterGroup = app.group().all();
+    Groups afterGroup = app.db().groups();
     assertThat(afterGroup, equalTo(
             beforeGroup.withAdded(groupData.withId(afterGroup.stream().mapToInt(GroupData::getId).max().getAsInt()))));
     logger.info("Stop test testGroupCreation");
