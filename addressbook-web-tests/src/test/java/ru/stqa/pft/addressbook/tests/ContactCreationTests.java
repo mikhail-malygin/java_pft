@@ -6,6 +6,8 @@ import com.thoughtworks.xstream.XStream;
 import org.testng.annotations.*;
 import ru.stqa.pft.addressbook.model.ContactData;
 import ru.stqa.pft.addressbook.model.Contacts;
+import ru.stqa.pft.addressbook.model.GroupData;
+import ru.stqa.pft.addressbook.model.Groups;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -52,12 +54,23 @@ public class ContactCreationTests extends TestBase {
     }
   }
 
+
+  @BeforeMethod
+  public void ensurePreconditions(GroupData groupData) {
+    if (app.db().groups().size() == 0) {
+      app.goTo().groupPage();
+      app.group().create(groupData);
+      app.goTo().returnToHomePage();
+    }
+  }
+
   @Test (dataProvider = "validContactsFromJson")
   public void testContactCreation(ContactData contactData) throws Exception {
+    Groups groups = app.db().groups();
     File photo = new File("src/test/resources/stru.png");
     Contacts beforeContact = app.db().contacts();
     app.goTo().gotoContactCreationPage();
-    app.contact().create(contactData.withPhoto(photo), true, false);
+    app.contact().create(contactData.withPhoto(photo).InGroup(groups.iterator().next()), true, false);
     assertThat(app.contact().count(), equalTo(beforeContact.size() + 1));
     Contacts afterContact = app.db().contacts();
     assertThat(afterContact, equalTo(beforeContact.withAdded(
@@ -72,7 +85,8 @@ public class ContactCreationTests extends TestBase {
     ContactData contact = new ContactData().withFirstName("Mikhail'").withMiddleName("Sergeevich").
             withLastName("Malygin").withAddress("Russia, Testing region, Agile city, Jira str, appart: 47, 9").
             withHomeNumber("8(343)9").withMobileNumber("799999999999").withWorkNumber("123-34").
-            withEmail("test.malygin@gmail.com").withEmail3("tes3t@mail.ru").withGroup("test1");
+            withEmail("test.malygin@gmail.com").withEmail3("tes3t@mail.ru").
+            withPhoto(new File("src/test/resources/stru.png"));
     app.contact().create(contact, true, false);
     assertThat(app.contact().count(), equalTo(beforeContact.size()));
     Contacts afterContact = app.contact().all();
