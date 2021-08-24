@@ -54,7 +54,6 @@ public class ContactCreationTests extends TestBase {
     }
   }
 
-
   @BeforeMethod
   public void ensurePreconditions(GroupData groupData) {
     if (app.db().groups().size() == 0) {
@@ -86,7 +85,9 @@ public class ContactCreationTests extends TestBase {
             withLastName("Malygin").withAddress("Russia, Testing region, Agile city, Jira str, appart: 47, 9").
             withHomeNumber("8(343)9").withMobileNumber("799999999999").withWorkNumber("123-34").
             withEmail("test.malygin@gmail.com").withEmail3("tes3t@mail.ru").
-            withPhoto(new File("src/test/resources/stru.png"));
+            withPhoto(new File("src/test/resources/stru.png")).
+            withEmail("test.malygin@gmail.com").withEmail3("tes3t@mail.ru");//.withGroup("test1");
+
     app.contact().create(contact, true, false);
     assertThat(app.contact().count(), equalTo(beforeContact.size()));
     Contacts afterContact = app.contact().all();

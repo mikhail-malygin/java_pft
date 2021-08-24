@@ -241,7 +241,13 @@ public class ContactData {
                 workNumber, address);
     }
 
+
     public ContactData InGroup(GroupData group) {
+        groups.add(group);
+        return this;
+    }
+
+    public ContactData inGroup(GroupData group) {
         groups.add(group);
         return this;
     }

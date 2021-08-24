@@ -20,8 +20,8 @@ public class ContactModificationTests extends TestBase {
             app.contact().create(new ContactData().withFirstName("Mikhail").withMiddleName("Sergeevich").
                     withLastName("Malygin").withAddress("Russia, Testing region, Agile city, Jira str, appart: 47, 9").
                     withHomeNumber("8(343)9").withMobileNumber("799999999999").withWorkNumber("123-34").
-                    withEmail("test.malygin@gmail.com").withEmail3("tes3t@mail.ru").InGroup(null),
-                    true, false);
+                    withEmail("test.malygin@gmail.com").withEmail3("tes3t@mail.ru")//.withGroup("test1")
+                    ,true, false);
             app.goTo().returnToHomePage();
         }
     }
@@ -35,8 +35,8 @@ public class ContactModificationTests extends TestBase {
                 withMiddleName("Sergeevich").withLastName("Malygin").
                 withAddress("Russia, Testing region, Agile city, Jira str, appart: 47, 9").
                 withHomeNumber("8(3439)9").withMobileNumber("799999999998").withWorkNumber("123-45").
-                withEmail("test.malygin1@gmail.com").withEmail2("").withEmail3("test4@mail.ru").
-                InGroup(groups.iterator().next()).withPhoto(new File("src/test/resources/stru.png"));
+                withEmail("test.malygin1@gmail.com").withEmail2("").withEmail3("test4@mail.ru")//.withGroup(null).
+                .withPhoto(new File("src/test/resources/stru.png"));
         app.contact().modify(contact);
         app.goTo().returnToHomePage();
         assertThat(app.contact().count(), equalTo(beforeContact.size()));

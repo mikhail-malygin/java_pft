@@ -20,8 +20,9 @@ public class ContactAddressTests extends TestBase{
             app.contact().create(new ContactData().withFirstName("Mikhail").withMiddleName("Sergeevich").
                     withLastName("Malygin").withAddress("Russia, Testing region, Agile city, Jira str, appart: 47, 9").
                     withHomeNumber("8(343)9").withMobileNumber("799999999999").withWorkNumber("123-34").
-                    withEmail("test.malygin@gmail.com").withEmail3("tes3t@mail.ru").InGroup(groups.iterator().next()).
-                    withPhoto(new File("src/test/resources/stru.png")),true, false);
+                    withEmail("test.malygin@gmail.com").withEmail3("tes3t@mail.ru")//.withGroup("test1")
+                    ,true, false);
+
             app.goTo().returnToHomePage();
         }
     }
