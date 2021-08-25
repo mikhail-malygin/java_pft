@@ -17,37 +17,37 @@ public class ContactHelper extends HelperBase {
     }
 
     public void fillContactForm(ContactData contactData, boolean creation, boolean modification) {
-      type(By.name("firstname"), contactData.getFirstName());
-      type(By.name("middlename"), contactData.getMiddleName());
-      type(By.name("lastname"), contactData.getLastName());
-      type(By.xpath("/html/body/div/div[4]/form/textarea[1]"), contactData.getAddress());
-      type(By.name("home"), contactData.getHomeNumber());
-      type(By.name("mobile"), contactData.getMobileNumber());
-      type(By.name("work"), contactData.getWorkNumber());
-      attach(By.name("photo"), contactData.getPhoto());
-      if (modification) {
-          type(By.xpath("/html/body/div/div[4]/form[1]/input[15]"),contactData.getEmail());
-          type(By.xpath("/html/body/div/div[4]/form[1]/input[16]"),contactData.getEmail2());
-          type(By.xpath("/html/body/div/div[4]/form[1]/input[17]"),contactData.getEmail3());
-      } else {
-          type(By.xpath("/html/body/div/div[4]/form[1]/input[14]"),contactData.getEmail());
-          type(By.xpath("/html/body/div/div[4]/form[1]/input[15]"),contactData.getEmail2());
-          type(By.xpath("/html/body/div/div[4]/form[1]/input[16]"),contactData.getEmail3());
-      }
+        type(By.name("firstname"), contactData.getFirstName());
+        type(By.name("middlename"), contactData.getMiddleName());
+        type(By.name("lastname"), contactData.getLastName());
+        type(By.xpath("/html/body/div/div[4]/form/textarea[1]"), contactData.getAddress());
+        type(By.name("home"), contactData.getHomeNumber());
+        type(By.name("mobile"), contactData.getMobileNumber());
+        type(By.name("work"), contactData.getWorkNumber());
+        attach(By.name("photo"), contactData.getPhoto());
+        if (modification) {
+            type(By.xpath("/html/body/div/div[4]/form[1]/input[15]"), contactData.getEmail());
+            type(By.xpath("/html/body/div/div[4]/form[1]/input[16]"), contactData.getEmail2());
+            type(By.xpath("/html/body/div/div[4]/form[1]/input[17]"), contactData.getEmail3());
+        } else {
+            type(By.xpath("/html/body/div/div[4]/form[1]/input[14]"), contactData.getEmail());
+            type(By.xpath("/html/body/div/div[4]/form[1]/input[15]"), contactData.getEmail2());
+            type(By.xpath("/html/body/div/div[4]/form[1]/input[16]"), contactData.getEmail3());
+        }
 
-      if (creation) {
-          if (contactData.getGroups().size() > 0) {
-              Assert.assertTrue(contactData.getGroups().size() == 1);
-              new Select(wd.findElement(By.name("new_group"))).
-                      selectByVisibleText(contactData.getGroups().iterator().next().getName());
-          }
-      } else {
-          Assert.assertFalse(isElementPresent(By.name("new_group")));
-      }
+        if (creation) {
+            if (contactData.getGroups().size() > 0) {
+                Assert.assertTrue(contactData.getGroups().size() == 1);
+                new Select(wd.findElement(By.name("new_group"))).
+                        selectByVisibleText(contactData.getGroups().iterator().next().getName());
+            }
+        } else {
+            Assert.assertFalse(isElementPresent(By.name("new_group")));
+        }
     }
 
     public void submitContactForm() {
-      click(By.xpath("//div[@id='content']/form/input[21]"));
+        click(By.xpath("//div[@id='content']/form/input[21]"));
     }
 
     public void initContactModificationById(int id) {
@@ -62,7 +62,13 @@ public class ContactHelper extends HelperBase {
         click(By.cssSelector("input[value=Delete]"));
     }
 
-    public void selectContactById (int id) {
+    private void addContactToGroup(ContactData contactData) {
+        new Select(wd.findElement(By.name("to_group"))).
+                selectByVisibleText(contactData.getGroups().iterator().next().getName());
+        click(By.cssSelector("Add to"));
+    }
+
+    public void selectContactById(int id) {
         wd.findElement(By.cssSelector("#container #maintable input[value = '" + id + "']")).click();
     }
 
@@ -99,6 +105,11 @@ public class ContactHelper extends HelperBase {
         deleteContact();
         contactCache = null;
         submitContactDeletion();
+    }
+
+    public void addGroup(ContactData contact) {
+        selectContactById(contact.getId());
+        addContactToGroup(contact);
     }
 
     public int count() {

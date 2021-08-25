@@ -6,36 +6,10 @@
     <email>test.malygin@gmail.com</email>
     <email2>test.malygin2@gmail.com</email2>
     <email3>test.malygin3@gmail.com</email3>
-    <group>test1</group>
     <homeNumber>83439</homeNumber>
     <mobileNumber>799999999999</mobileNumber>
     <workNumber>712</workNumber>
     <address>Russia, Testing region, Agile city, Jira str, appart: 47, 9</address>
-  </contact>
-  <contact>
-    <firstName>Mikhail</firstName>
-    <middleName>Sergeevich</middleName>
-    <lastName>Malygin 1</lastName>
-    <email>test.malygin@gmail.com</email>
-    <email2>test.malygin2@gmail.com</email2>
-    <email3>test.malygin3@gmail.com</email3>
-    <group>test1</group>
-    <homeNumber>83439</homeNumber>
-    <mobileNumber>799999999999</mobileNumber>
-    <workNumber>712</workNumber>
-    <address>Russia, Testing region, Agile city, Jira str, appart: 47, 9</address>
-  </contact>
-  <contact>
-    <firstName>Mikhail</firstName>
-    <middleName>Sergeevich</middleName>
-    <lastName>Malygin 2</lastName>
-    <email>test.malygin@gmail.com</email>
-    <email2>test.malygin2@gmail.com</email2>
-    <email3>test.malygin3@gmail.com</email3>
-    <group>test1</group>
-    <homeNumber>83439</homeNumber>
-    <mobileNumber>799999999999</mobileNumber>
-    <workNumber>712</workNumber>
-    <address>Russia, Testing region, Agile city, Jira str, appart: 47, 9</address>
+    <groups/>
   </contact>
 </list>

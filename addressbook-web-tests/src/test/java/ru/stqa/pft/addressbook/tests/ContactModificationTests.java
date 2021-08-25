@@ -4,7 +4,6 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import ru.stqa.pft.addressbook.model.ContactData;
 import ru.stqa.pft.addressbook.model.Contacts;
-import ru.stqa.pft.addressbook.model.Groups;
 
 import java.io.File;
 
@@ -28,7 +27,6 @@ public class ContactModificationTests extends TestBase {
 
     @Test
     public void testContactModification() {
-        Groups groups = app.db().groups();
         Contacts beforeContact= app.db().contacts();
         ContactData modifiedContact = beforeContact.iterator().next();
         ContactData contact = new ContactData().withId(modifiedContact.getId()).withFirstName("Misha").

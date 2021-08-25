@@ -3,9 +3,6 @@ package ru.stqa.pft.addressbook.tests;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import ru.stqa.pft.addressbook.model.ContactData;
-import ru.stqa.pft.addressbook.model.Groups;
-
-import java.io.File;
 
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.MatcherAssert.assertThat;
@@ -15,7 +12,6 @@ public class ContactAddressTests extends TestBase{
     @BeforeMethod
     public void ensurePreconditions() {
         if (app.db().contacts().size() == 0) {
-            Groups groups = app.db().groups();
             app.goTo().gotoContactCreationPage();
             app.contact().create(new ContactData().withFirstName("Mikhail").withMiddleName("Sergeevich").
                     withLastName("Malygin").withAddress("Russia, Testing region, Agile city, Jira str, appart: 47, 9").

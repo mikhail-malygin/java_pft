@@ -54,17 +54,13 @@ public class ContactCreationTests extends TestBase {
     }
   }
 
-  @BeforeMethod
-  public void ensurePreconditions(GroupData groupData) {
-    if (app.db().groups().size() == 0) {
-      app.goTo().groupPage();
-      app.group().create(groupData);
-      app.goTo().returnToHomePage();
-    }
-  }
-
   @Test (dataProvider = "validContactsFromJson")
   public void testContactCreation(ContactData contactData) throws Exception {
+    if (app.db().groups().size() == 0) {
+      app.goTo().groupPage();
+      app.group().create(new GroupData().withName("test1").withHeader("test1").withFooter("test1"));
+      app.goTo().returnToHomePage();
+    }
     Groups groups = app.db().groups();
     File photo = new File("src/test/resources/stru.png");
     Contacts beforeContact = app.db().contacts();
