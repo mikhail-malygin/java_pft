@@ -9,6 +9,7 @@ import ru.stqa.pft.addressbook.model.ContactData;
 import ru.stqa.pft.addressbook.model.Contacts;
 
 import java.util.List;
+import java.util.Random;
 
 public class ContactHelper extends HelperBase {
 
@@ -62,10 +63,13 @@ public class ContactHelper extends HelperBase {
         click(By.cssSelector("input[value=Delete]"));
     }
 
-    private void addContactToGroup(ContactData contactData) {
-        new Select(wd.findElement(By.name("to_group"))).
-                selectByVisibleText(contactData.getGroups().iterator().next().getName());
-        click(By.cssSelector("Add to"));
+    private void addContactToGroup() {
+        Select addTo = new Select(wd.findElement(By.name("to_group")));
+        List<WebElement> groupList = addTo.getOptions();
+        Random num = new Random();
+        int randomNum = num.nextInt(groupList.size());
+        addTo.selectByIndex(randomNum);
+        click(By.cssSelector("input[value=\"Add to\"]"));
     }
 
     public void selectContactById(int id) {
@@ -109,7 +113,7 @@ public class ContactHelper extends HelperBase {
 
     public void addGroup(ContactData contact) {
         selectContactById(contact.getId());
-        addContactToGroup(contact);
+        addContactToGroup();
     }
 
     public int count() {
