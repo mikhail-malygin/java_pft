@@ -5,6 +5,8 @@ import org.testng.annotations.Test;
 import ru.stqa.pft.addressbook.model.ContactData;
 import ru.stqa.pft.addressbook.model.GroupData;
 
+import java.util.stream.Collectors;
+
 public class ContactAddingGroupTests extends TestBase{
 
     @BeforeMethod
@@ -18,10 +20,14 @@ public class ContactAddingGroupTests extends TestBase{
 
     @Test
     public void testContactAddingGroup() {
-        ContactData contactAddingGroup = app.db().contacts().iterator().next();
-        if (contactAddingGroup.getGroups().size() == 0) {
-            app.contact().addGroup(contactAddingGroup);
+        ContactData contactBeforeAddingGroup = app.db().contacts().iterator().next();
+        System.out.println("Check before: " +  contactBeforeAddingGroup.getGroups());
+        if (contactBeforeAddingGroup.getGroups().size() == 0) {
+            app.contact().addGroup(contactBeforeAddingGroup);
+        } else {
+            app.contact().DeleteGroup(contactBeforeAddingGroup);
+            app.contact().addGroup(contactBeforeAddingGroup);
         }
-        System.out.println("Check 2: " + contactAddingGroup.getGroups());
+        System.out.println("Check before: " +  contactBeforeAddingGroup.getGroups());
     }
 }

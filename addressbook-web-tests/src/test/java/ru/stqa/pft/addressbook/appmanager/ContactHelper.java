@@ -70,6 +70,7 @@ public class ContactHelper extends HelperBase {
         int randomNum = num.nextInt(groupList.size());
         addTo.selectByIndex(randomNum);
         click(By.cssSelector("input[value=\"Add to\"]"));
+
     }
 
     public void selectContactById(int id) {
@@ -82,7 +83,7 @@ public class ContactHelper extends HelperBase {
     }
 
     public void returnToHomePage() {
-        click(By.cssSelector("a[href=\"./\"]"));
+        click(By.cssSelector("#logo"));
     }
 
     public boolean isThereAContact() {
@@ -114,6 +115,26 @@ public class ContactHelper extends HelperBase {
     public void addGroup(ContactData contact) {
         selectContactById(contact.getId());
         addContactToGroup();
+        wd.findElement(By.cssSelector("div.msgbox"));
+        returnToHomePage();
+    }
+
+    public void DeleteGroup(ContactData contact) {
+        selectGroup(contact);
+        selectContactById(contact.getId());
+        removeFromGroup();
+        wd.findElement(By.cssSelector("div.msgbox"));
+        returnToHomePage();
+    }
+
+    private void selectGroup(ContactData contact) {
+        System.out.println("SelectGroup: " + contact.getGroups());
+         new Select(wd.findElement(By.cssSelector("select[name=\"group\"]"))).
+                 selectByValue(String.valueOf(contact.getGroups().iterator().next().getId()));
+    }
+
+    private void removeFromGroup() {
+        click(By.name("remove"));
     }
 
     public int count() {
