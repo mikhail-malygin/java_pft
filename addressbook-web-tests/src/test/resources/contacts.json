@@ -10,5 +10,29 @@
     "mobileNumber": "799999999999",
     "workNumber": "712",
     "address": "Russia, Testing region, Agile city, Jira str, appart: 47, 9"
+  },
+  {
+    "firstName": "Mikhail",
+    "middleName": "Sergeevich",
+    "lastName": "Malygin 1",
+    "email": "test.malygin@gmail.com",
+    "email2": "test.malygin2@gmail.com",
+    "email3": "test.malygin3@gmail.com",
+    "homeNumber": "83439",
+    "mobileNumber": "799999999999",
+    "workNumber": "712",
+    "address": "Russia, Testing region, Agile city, Jira str, appart: 47, 9"
+  },
+  {
+    "firstName": "Mikhail",
+    "middleName": "Sergeevich",
+    "lastName": "Malygin 2",
+    "email": "test.malygin@gmail.com",
+    "email2": "test.malygin2@gmail.com",
+    "email3": "test.malygin3@gmail.com",
+    "homeNumber": "83439",
+    "mobileNumber": "799999999999",
+    "workNumber": "712",
+    "address": "Russia, Testing region, Agile city, Jira str, appart: 47, 9"
   }
 ]
