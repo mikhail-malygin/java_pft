@@ -119,7 +119,7 @@ public class ContactHelper extends HelperBase {
         returnToHomePage();
     }
 
-    public void DeleteGroup(ContactData contact) {
+    public void deleteGroup(ContactData contact) {
         selectGroup(contact);
         selectContactById(contact.getId());
         removeFromGroup();
@@ -128,9 +128,11 @@ public class ContactHelper extends HelperBase {
     }
 
     private void selectGroup(ContactData contact) {
-        System.out.println("SelectGroup: " + contact.getGroups());
-         new Select(wd.findElement(By.cssSelector("select[name=\"group\"]"))).
-                 selectByValue(String.valueOf(contact.getGroups().iterator().next().getId()));
+        //System.out.println("SelectGroup: " +  contact.getGroups());
+        new Select(wd.findElement(By.cssSelector("select[name=\"group\"]"))).
+                selectByValue(String.valueOf(contact.getGroups().iterator().next().getId()));
+                //selectByValue(String.valueOf(id));
+                //selectByValue(String.valueOf(contact.getGroups().iterator().next().getId()));
     }
 
     private void removeFromGroup() {

@@ -35,13 +35,13 @@ public class ContactAddingGroupTests extends TestBase{
     public void testContactAddingGroup() {
         ContactData contactBeforeAddingGroup = app.db().contacts().iterator().next();
         if (contactBeforeAddingGroup.getGroups().size() != 0) {
-            app.contact().DeleteGroup(contactBeforeAddingGroup);
+            app.contact().deleteGroup(contactBeforeAddingGroup);
         }
-        Groups GroupBeforeAddingGroupInContact = app.db().gettingModifiedContactData(contactBeforeAddingGroup.getId()).
+        Groups groupBeforeAddingGroupInContact = app.db().gettingModifiedContactData(contactBeforeAddingGroup.getId()).
                 getGroups();
         app.contact().addGroup(contactBeforeAddingGroup);
-        Groups GroupAfterAddingGroupInContact = app.db().gettingModifiedContactData(contactBeforeAddingGroup.getId()).
+        Groups groupAfterAddingGroupInContact = app.db().gettingModifiedContactData(contactBeforeAddingGroup.getId()).
                 getGroups();
-        assertNotEquals(GroupAfterAddingGroupInContact, GroupBeforeAddingGroupInContact);
+        assertNotEquals(groupAfterAddingGroupInContact, groupBeforeAddingGroupInContact);
     }
 }
