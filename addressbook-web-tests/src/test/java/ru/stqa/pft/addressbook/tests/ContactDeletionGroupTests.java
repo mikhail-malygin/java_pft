@@ -33,19 +33,16 @@ public class ContactDeletionGroupTests extends TestBase {
 
     @Test
     public void testContactDeletionGroup() {
-        ContactData contactBeforeDeletionGroup = app.db().contacts().iterator().next();
-        System.out.println("contact before: " + contactBeforeDeletionGroup);
-        if (contactBeforeDeletionGroup.getGroups().size() == 0) {
-            app.contact().addGroup(contactBeforeDeletionGroup);
+        ContactData contactPreparingToTest = app.db().contacts().iterator().next();
+        if (contactPreparingToTest.getGroups().size() == 0) {
+            app.contact().addGroup(contactPreparingToTest);
         }
+        ContactData contactBeforeDeletionGroup = app.db().gettingModifiedContactData(contactPreparingToTest.getId());
         Groups groupBeforeDeletionGroupInContact = app.db().gettingModifiedContactData(
                 contactBeforeDeletionGroup.getId()).getGroups();
-        System.out.println("group before: " + groupBeforeDeletionGroupInContact);
         app.contact().deleteGroup(contactBeforeDeletionGroup);
         Groups groupAfterDeletionGroupInContact = app.db().gettingModifiedContactData(contactBeforeDeletionGroup.getId()).
                 getGroups();
-        System.out.println("group before: " + groupBeforeDeletionGroupInContact);
-        System.out.println("group after: " + groupAfterDeletionGroupInContact);
         assertNotEquals(groupAfterDeletionGroupInContact, groupBeforeDeletionGroupInContact);
     }
 }
