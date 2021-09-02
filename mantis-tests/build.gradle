@@ -9,6 +9,7 @@ dependencies {
     implementation 'org.testng:testng:7.4.0'
     implementation 'org.seleniumhq.selenium:selenium-java:3.141.59'
     implementation 'org.hamcrest:java-hamcrest:2.0.0.0'
+    implementation 'org.apache.httpcomponents:httpclient:4.5.13'
 }
 
 test {
@@ -17,19 +18,19 @@ test {
 
 test {
     useTestNG {
-        suites 'src/test/resources/testng-groups.xml'
+        suites 'src/test/resources/testng.xml'
     }
 
     if (project.hasProperty('browser')) {
-        systemProperty('browser', "${browser}")
+        systemProperty 'browser', "${browser}"
     }
 
     if (project.hasProperty('target')) {
-        systemProperty('target', "${target}")
+        systemProperty 'target', "${target}"
     }
 
     if (project.hasProperty('verifyUI')) {
-        systemProperty('verifyUI', "${verifyUI}")
+        systemProperty 'verifyUI', "${verifyUI}"
     }
 }
 
