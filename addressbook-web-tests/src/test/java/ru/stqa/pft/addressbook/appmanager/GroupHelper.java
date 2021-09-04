@@ -76,6 +76,13 @@ public class GroupHelper extends HelperBase {
         return isElementPresent(By.name("selected[]"));
     }
 
+    public int getIdGroupForDeletionContact(Groups group) {
+        String part = group.toString();
+        String[] parts = part.split(",");
+        int idGroup = Integer.parseInt(parts[0].substring(parts[0].indexOf("=") + 1));
+        return idGroup;
+    }
+
     public int count() {
         return wd.findElements(By.name("selected[]")).size();
     }

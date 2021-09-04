@@ -9,7 +9,6 @@ import ru.stqa.pft.addressbook.model.ContactData;
 import ru.stqa.pft.addressbook.model.Contacts;
 
 import java.util.List;
-import java.util.Random;
 
 public class ContactHelper extends HelperBase {
 
@@ -63,14 +62,10 @@ public class ContactHelper extends HelperBase {
         click(By.cssSelector("input[value=Delete]"));
     }
 
-    private void addContactToGroup() {
+    private void addContactToGroup(String id) {
         Select addTo = new Select(wd.findElement(By.name("to_group")));
-        List<WebElement> groupList = addTo.getOptions();
-        Random num = new Random();
-        int randomNum = num.nextInt(groupList.size());
-        addTo.selectByIndex(randomNum);
+        addTo.selectByValue(id);
         click(By.cssSelector("input[value=\"Add to\"]"));
-
     }
 
     public void selectContactById(int id) {
@@ -112,27 +107,23 @@ public class ContactHelper extends HelperBase {
         submitContactDeletion();
     }
 
-    public void addGroup(ContactData contact) {
+    public void addGroup(ContactData contact, String id) {
         selectContactById(contact.getId());
-        addContactToGroup();
+        addContactToGroup(id);
         wd.findElement(By.cssSelector("div.msgbox"));
         returnToHomePage();
     }
 
-    public void deleteGroup(ContactData contact) {
-        selectGroup(contact);
+    public void deleteGroup(ContactData contact, int id) {
+        selectGroup(id);
         selectContactById(contact.getId());
         removeFromGroup();
         wd.findElement(By.cssSelector("div.msgbox"));
         returnToHomePage();
     }
 
-    private void selectGroup(ContactData contact) {
-        //System.out.println("SelectGroup: " +  contact.getGroups());
-        new Select(wd.findElement(By.cssSelector("select[name=\"group\"]"))).
-                selectByValue(String.valueOf(contact.getGroups().iterator().next().getId()));
-                //selectByValue(String.valueOf(id));
-                //selectByValue(String.valueOf(contact.getGroups().iterator().next().getId()));
+    private void selectGroup(int id) {
+        new Select(wd.findElement(By.cssSelector("select[name=\"group\"]"))).selectByValue(String.valueOf(id));
     }
 
     private void removeFromGroup() {

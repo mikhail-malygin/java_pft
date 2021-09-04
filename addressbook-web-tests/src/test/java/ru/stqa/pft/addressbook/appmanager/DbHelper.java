@@ -51,4 +51,14 @@ public class DbHelper {
         session.close();
         return ModifiedContactData;
     }
+
+    public GroupData gettingModifiedGroupData(int id) {
+        Session session = sessionFactory.openSession();
+        session.beginTransaction();
+        GroupData ModifiedGroupData = (GroupData) session.
+                createQuery(String.format("from GroupData where id = %s", id)).uniqueResult();
+        session.getTransaction().commit();
+        session.close();
+        return ModifiedGroupData;
+    }
 }

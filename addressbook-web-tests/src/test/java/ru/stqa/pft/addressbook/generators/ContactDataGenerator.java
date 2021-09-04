@@ -75,7 +75,7 @@ public class ContactDataGenerator {
                 writer.write(String.format("%s;%s;%s;%s;%s;%s;%s;%s;%s;%s\n", contact.getLastName(),
                         contact.getFirstName(), contact.getMiddleName(), contact.getAddress(), contact.getHomeNumber(),
                         contact.getMobileNumber(), contact.getWorkNumber(), contact.getEmail(), contact.getEmail2(),
-                        contact.getEmail3())); //,contact.getGroup()));
+                        contact.getEmail3()));
             }
         }
     }
@@ -87,7 +87,7 @@ public class ContactDataGenerator {
                     withMiddleName("Sergeevich").withHomeNumber("83439").withMobileNumber("799999999999").
                     withAddress("Russia, Testing region, Agile city, Jira str, appart: 47, 9").withWorkNumber("712").
                     withEmail("test.malygin@gmail.com").withEmail2("test.malygin2@gmail.com").
-                    withEmail3("test.malygin3@gmail.com"));//.withGroup("test1"));
+                    withEmail3("test.malygin3@gmail.com"));
         }
         return contacts;
     }
