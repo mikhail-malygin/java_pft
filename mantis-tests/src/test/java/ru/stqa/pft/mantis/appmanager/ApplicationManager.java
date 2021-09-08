@@ -21,6 +21,8 @@ public class ApplicationManager {
     private FtpHelper ftp;
     private MailHelper mailHelper;
     private JamesHelper jamesHelper;
+    private SessionHelper sessionHelper;
+    private NavigationHelper navigationHelper;
 
     public ApplicationManager(String browser){
         this.browser = browser;
@@ -89,4 +91,19 @@ public class ApplicationManager {
         }
         return jamesHelper;
     }
+
+    public SessionHelper session() {
+        if (sessionHelper == null) {
+            sessionHelper = new SessionHelper (this);
+        }
+        return sessionHelper;
+    }
+
+    public NavigationHelper navigation() {
+        if (navigationHelper == null) {
+            navigationHelper = new NavigationHelper (this);
+        }
+        return navigationHelper;
+    }
 }
+
