@@ -7,6 +7,8 @@ public class ChangePasswordTests extends TestBase{
 
     @Test
     public void testChangePassword() {
+        Users users = app.db().users();
+        System.out.println("users: " + users);
         app.session().start("administrator", "root");
         app.navigation().goToManageUsersPage();
         app.navigation().resetPassword();

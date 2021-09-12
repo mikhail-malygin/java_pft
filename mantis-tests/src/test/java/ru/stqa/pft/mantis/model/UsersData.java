@@ -13,7 +13,7 @@ public class UsersData {
     @Id
     private int id = Integer.MAX_VALUE;
 
-    @Column (name = "username")
+    @Column(name = "username")
     private String userName;
 
     private String email;
@@ -47,7 +47,7 @@ public class UsersData {
 
     @Override
     public String toString() {
-        return "UserData{" +
+        return "UsersData{" +
                 "id=" + id +
                 ", userName='" + userName + '\'' +
                 ", email='" + email + '\'' +
@@ -58,8 +58,8 @@ public class UsersData {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        UsersData userData = (UsersData) o;
-        return id == userData.id && Objects.equals(userName, userData.userName) && Objects.equals(email, userData.email);
+        UsersData usersData = (UsersData) o;
+        return id == usersData.id && Objects.equals(userName, usersData.userName) && Objects.equals(email, usersData.email);
     }
 
     @Override
