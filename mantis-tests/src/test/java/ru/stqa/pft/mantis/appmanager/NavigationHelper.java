@@ -21,8 +21,8 @@ public class NavigationHelper extends HelperBase{
         }
     }
 
-    public void resetPassword() {
-        click(By.cssSelector("a[href=\"manage_user_edit_page.php?user_id=7\"]"));
+    public void resetPassword(String id) {
+        click(By.cssSelector(String.format("a[href=\"manage_user_edit_page.php?user_id=%s\"]", id)));
         click(By.cssSelector("input[value=\"Reset Password\"]"));
     }
 
