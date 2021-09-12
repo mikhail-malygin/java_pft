@@ -1,5 +1,6 @@
 package ru.stqa.pft.mantis.model;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
@@ -7,11 +8,14 @@ import java.util.Objects;
 
 @Entity
 @Table (name = "mantis_user_table")
-public class UserData {
+public class UsersData {
 
     @Id
     private int id = Integer.MAX_VALUE;
+
+    @Column (name = "username")
     private String userName;
+
     private String email;
 
     public int getId() {
@@ -26,17 +30,17 @@ public class UserData {
         return email;
     }
 
-    public UserData withId(int id) {
+    public UsersData withId(int id) {
         this.id = id;
         return this;
     }
 
-    public UserData withName(String userName) {
+    public UsersData withName(String userName) {
         this.userName = userName;
         return this;
     }
 
-    public UserData withEmail(String email) {
+    public UsersData withEmail(String email) {
         this.email = email;
         return this;
     }
@@ -54,7 +58,7 @@ public class UserData {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        UserData userData = (UserData) o;
+        UsersData userData = (UsersData) o;
         return id == userData.id && Objects.equals(userName, userData.userName) && Objects.equals(email, userData.email);
     }
 

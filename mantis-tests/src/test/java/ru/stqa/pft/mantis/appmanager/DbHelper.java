@@ -5,7 +5,7 @@ import org.hibernate.SessionFactory;
 import org.hibernate.boot.MetadataSources;
 import org.hibernate.boot.registry.StandardServiceRegistry;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
-import ru.stqa.pft.mantis.model.UserData;
+import ru.stqa.pft.mantis.model.UsersData;
 import ru.stqa.pft.mantis.model.Users;
 
 import java.util.List;
@@ -27,7 +27,7 @@ public class DbHelper {
     public Users users() {
         Session session = sessionFactory.openSession();
         session.beginTransaction();
-        List<UserData> result = session.createQuery( "UserData" ).list();
+        List<UsersData> result = session.createQuery( "UsersData" ).list();
         session.getTransaction().commit();
         session.close();
         return new Users(result);
