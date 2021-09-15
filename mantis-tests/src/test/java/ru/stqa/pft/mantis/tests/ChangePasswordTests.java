@@ -28,12 +28,12 @@ public class ChangePasswordTests extends TestBase{
         Users users = app.db().users();
         UsersData modifiedUser = users.iterator().next();
         for (UsersData user : users) {
-            if (user.getEmail().equals("user1631250853094@localhost")) {
+            if (! user.getEmail().equals("root@localhost")) {
                 modifiedUser = user;
                 break;
             }
         }
-        if (! modifiedUser.getEmail().equals("user1631250853094@localhost")) {
+        if (modifiedUser.getEmail().equals("root@localhost")) {
             System.out.println("Пользователь не найден. Выберете другого пользователя");
             return;
         }
@@ -46,7 +46,7 @@ public class ChangePasswordTests extends TestBase{
         gettingLinkFromEmail(email, newPassword);
         HttpSession session = app.newSession();
         assertTrue(session.login(userName, newPassword));
-        assertTrue(session.isLoggedInAs("Mikhail_Malygin"));
+        assertTrue(session.isLoggedInAs(userName));
     }
 
     private void changePasswordByAdmin(String id) {
